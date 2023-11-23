@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угадай число</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        #output {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #guessInput {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        #submitBtn {
+            padding: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Угадай число</h1>
+    <p id="output">Введите число от 1 до 10</p>
+    <input type="number" id="guessInput" placeholder="Введите ваш вариант">
+    <button id="submitBtn" onclick="checkGuess()">Проверить</button>
+
+    <script>
+        // Генерация случайного числа от 1 до 10
+        const targetNumber = Math.floor(Math.random() * 10) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            // Получаем значение введенное игроком
+            const playerGuess = document.getElementById('guessInput').value;
+            
+            // Проверяем, является ли введенное значение числом
+            if (isNaN(playerGuess)) {
+                alert('Пожалуйста, введите число!');
+                return;
+            }
+
+            // Увеличиваем количество попыток
+            attempts++;
+
+            // Сравниваем введенное значение с загаданным числом
+            if (parseInt(playerGuess) === targetNumber) {
+                document.getElementById('output').innerHTML = `Поздравляем! Вы угадали число ${targetNumber} за ${attempts} попыток.`;
+            } else {
+                document.getElementById('output').innerHTML = `Неверно. Попробуйте еще раз.`;
+            }
+        }
+    </script>
+
+</body>
+</html>

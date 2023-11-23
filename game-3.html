@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Камень, ножницы, бумага</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #output {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #player1Choice, #player2Choice {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+        }
+
+        #playBtn {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h1>Камень, ножницы, бумага</h1>
+        <p id="output">Игрок 1, выберите: камень, ножницы или бумагу</p>
+        <select id="player1Choice">
+            <option value="rock">Камень</option>
+            <option value="scissors">Ножницы</option>
+            <option value="paper">Бумага</option>
+        </select>
+
+        <p id="output">Игрок 2, выберите: камень, ножницы или бумагу</p>
+        <select id="player2Choice">
+            <option value="rock">Камень</option>
+            <option value="scissors">Ножницы</option>
+            <option value="paper">Бумага</option>
+        </select>
+
+        <br>
+
+        <button id="playBtn" onclick="playGame()">Играть</button>
+    </div>
+
+    <script>
+        function playGame() {
+            const choices = ["rock", "scissors", "paper"];
+            const player1Choice = document.getElementById('player1Choice').value;
+            const player2Choice = document.getElementById('player2Choice').value;
+
+            document.getElementById('output').innerHTML = `Игрок 1 выбрал: ${player1Choice}. Игрок 2 выбрал: ${player2Choice}.<br>`;
+
+            if (player1Choice === player2Choice) {
+                document.getElementById('output').innerHTML += "Ничья!";
+            } else if (
+                (player1Choice === "rock" && player2Choice === "scissors") ||
+                (player1Choice === "scissors" && player2Choice === "paper") ||
+                (player1Choice === "paper" && player2Choice === "rock")
+            ) {
+                document.getElementById('output').innerHTML += "Игрок 1 победил!";
+            } else {
+                document.getElementById('output').innerHTML += "Игрок 2 победил.";
+            }
+        }
+    </script>
+
+</body>
+</html>
